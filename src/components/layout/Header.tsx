@@ -6,7 +6,7 @@ import NavLink from "@/components/layout/Navlink";
 const Header = () => {
   const user = false;
   return (
-    <header className="shadow-md sticky top-0 transition-all duration-150">
+    <header className="shadow-md sticky top-0 transition-all duration-150 mb-8">
       <nav className="container flex items-center h-15">
         <ul className="flex w-full justify-between">
           <div className="flex">
