@@ -22,8 +22,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="fa" dir="rtl">
-      <body className={`${vazir.variable} antialiased`}>
+    <html lang="fa" dir="rtl" className={`${vazir.variable}`}>
+      <body >
         <Layout>{children}</Layout>
       </body>
     </html>

@@ -1,12 +1,12 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
-type NavlinkProps = {
+type NavLinkProps = {
   path: string;
   children: React.ReactNode;
 };
 
-const Navlink = ({ path, children }: NavlinkProps) => {
+const NavLink = ({ path, children }: NavLinkProps) => {
   const pathName = usePathname();
   const isActive = pathName === path;
 
@@ -23,4 +23,4 @@ const Navlink = ({ path, children }: NavlinkProps) => {
     </Link>
   );
 };
-export default Navlink;
+export default NavLink;
