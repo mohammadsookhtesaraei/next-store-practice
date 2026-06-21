@@ -4,6 +4,7 @@ import { Vazirmatn } from "next/font/google";
 
 import "./globals.css";
 import Layout from "@/components/layout/Layout";
+import QueryProvider from "@/providers/ReactQueryProvider";
 
 const vazir = Vazirmatn({
   variable: "--font-vazir",
@@ -23,8 +24,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="fa" dir="rtl" className={`${vazir.variable}`}>
-      <body >
-        <Layout>{children}</Layout>
+      <body>
+        <QueryProvider>
+          <Layout>{children}</Layout>
+        </QueryProvider>
       </body>
     </html>
   );
