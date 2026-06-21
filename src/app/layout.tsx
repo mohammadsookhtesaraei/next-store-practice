@@ -5,6 +5,7 @@ import { Vazirmatn } from "next/font/google";
 import "./globals.css";
 import Layout from "@/components/layout/Layout";
 import QueryProvider from "@/providers/ReactQueryProvider";
+import { Toaster } from "react-hot-toast";
 
 const vazir = Vazirmatn({
   variable: "--font-vazir",
@@ -27,6 +28,7 @@ export default function RootLayout({
       <body>
         <QueryProvider>
           <Layout>{children}</Layout>
+          <Toaster/>
         </QueryProvider>
       </body>
     </html>
