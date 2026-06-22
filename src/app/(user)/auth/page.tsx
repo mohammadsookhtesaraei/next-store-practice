@@ -17,6 +17,10 @@ const Auth = () => {
     phoneNumber:"",
     otp:""
   });
+  
+  const [otp,setOtp]=useState("");
+
+  
 
   const [step,setStep]=useState(1);
  
@@ -45,6 +49,11 @@ const Auth = () => {
     }
     toast.error("مشکلی پیش آمده")
     }
+  };
+
+
+  const otpCheckHandler=async(e: React.SubmitEvent<HTMLFormElement>)=>{
+  e.preventDefault();
   }
 
 
@@ -54,7 +63,7 @@ const Auth = () => {
     case 1 :
       return <SendOtp phoneNumber={OtpData.phoneNumber} changeHandler={changeHandler} onSubmit={otpPhoneNumberHandler}/>
     case 2 :
-      return <CheckOtp/>
+      return <CheckOtp otp={otp} setOtp={setOtp} onSubmit={otpCheckHandler} />
   }
   }
 
