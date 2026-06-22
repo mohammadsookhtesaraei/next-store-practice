@@ -2,12 +2,16 @@ import OTPInput from "react-otp-input";
 
 import { CheckOtpProps } from "@/app/(user)/auth/types/otp-types";
 
-const CheckOtp = ({otp,setOtp,onSubmit}:CheckOtpProps) => {
+const CheckOtp = ({otp,setOtp,onSubmit,time,onBack}:CheckOtpProps) => {
   return (
     <div className="flex justify-center">
     <div className="w-full max-w-md">
      <form className="space-y-10" onSubmit={onSubmit}>
       <p>کد تایید را  وارد کنید</p>
+      <button onClick={onBack}>ویرایش شماره موبایل</button>
+      <div className="flex flex-col">
+        {time > 0 ? <p>ثانیه تا ارسال مجدد کد{time}</p>:<button className="self-start">ارسال مجدد کد</button>}
+      </div>
         <OTPInput
           value={otp}
           onChange={setOtp}
@@ -24,7 +28,7 @@ const CheckOtp = ({otp,setOtp,onSubmit}:CheckOtpProps) => {
           // @ts-ignore
           renderInput={(props) => <input type="number" {...props} />}
         />
-        <button type="submit">ارسال کد تایید</button>
+        <button className="btn btn--primary cursor-pointer" type="submit">ارسال کد تایید</button>
     </form> 
     </div>
     </div>

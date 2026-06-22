@@ -13,5 +13,7 @@ export type SendOtpProps={
 export type CheckOtpProps={
   otp:string,
   setOtp: React.Dispatch<React.SetStateAction<string>>,
-  onSubmit:(e: React.SubmitEvent<HTMLFormElement>)=>void
+  onSubmit:(e: React.SubmitEvent<HTMLFormElement>)=>void,
+  time:number,
+  onBack:() => void
 }

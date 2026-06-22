@@ -1,7 +1,7 @@
 "use client"
 
 
-import {useState} from "react"
+import {useState,useEffect} from "react"
 
 import SendOtp from "@/app/(user)/auth/components/SendOtp"
 import CheckOtp from "@/app/(user)/auth/components/CheckOtp"
@@ -11,6 +11,8 @@ import { getOtpCode } from "@/services/authServices"
 import toast from "react-hot-toast"
 import axios from "axios"
 
+const resend=90;
+
 const Auth = () => {
  
   const [OtpData,setOtpData]=useState({
@@ -19,9 +21,7 @@ const Auth = () => {
   });
   
   const [otp,setOtp]=useState("");
-
-  
-
+  const [time,setTime]=useState(resend);
   const [step,setStep]=useState(1);
  
   const {data,isPending,mutateAsync}=useMutation({
@@ -56,6 +56,18 @@ const Auth = () => {
   e.preventDefault();
   }
 
+  useEffect(()=>{
+   const interval=time>0&& setInterval(()=>{
+    setTime((prev)=> prev - 1);
+   },1000);
+
+   return ()=> {
+    if(interval){
+      clearInterval(interval)
+    }
+   }
+  },[time])
+
 
 
   function stepRenders(){
@@ -63,7 +75,7 @@ const Auth = () => {
     case 1 :
       return <SendOtp phoneNumber={OtpData.phoneNumber} changeHandler={changeHandler} onSubmit={otpPhoneNumberHandler}/>
     case 2 :
-      return <CheckOtp otp={otp} setOtp={setOtp} onSubmit={otpCheckHandler} />
+      return <CheckOtp otp={otp} onBack={()=>setStep(1)} setOtp={setOtp} onSubmit={otpCheckHandler} time={time} />
   }
   }
 
