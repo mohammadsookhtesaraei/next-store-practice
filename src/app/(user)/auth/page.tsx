@@ -33,7 +33,7 @@ const Auth = () => {
   });
 
 
-  const {data:checkOtp,mutateAsync:resonseOtp}=useMutation({
+  const {data:checkOtp,mutateAsync:resonseOtp,isPending:isloading}=useMutation({
     mutationFn:checkotpCode
   });
 
@@ -99,9 +99,9 @@ const Auth = () => {
   function stepRenders(){
   switch(step){
     case 1 :
-      return <SendOtp phoneNumber={phoneNumber} changeHandler={changeHandler} onSubmit={otpPhoneNumberHandler}/>
+      return <SendOtp phoneNumber={phoneNumber} changeHandler={changeHandler} onSubmit={otpPhoneNumberHandler} isLoading={isPending}/>
     case 2 :
-      return <CheckOtp otp={otp} onBack={()=>setStep(1)} setOtp={setOtp} onSubmit={otpCheckHandler} time={time} />
+      return <CheckOtp otp={otp} onBack={()=>setStep(1)} setOtp={setOtp} onSubmit={otpCheckHandler} time={time} isloading={isloading} />
   }
   }
 

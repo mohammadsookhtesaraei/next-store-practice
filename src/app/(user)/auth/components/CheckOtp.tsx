@@ -2,7 +2,7 @@ import OTPInput from "react-otp-input";
 
 import { CheckOtpProps } from "@/app/(user)/auth/types/otp-types";
 
-const CheckOtp = ({otp,setOtp,onSubmit,time,onBack}:CheckOtpProps) => {
+const CheckOtp = ({otp,setOtp,onSubmit,time,onBack,isloading}:CheckOtpProps) => {
   return (
     <div className="flex justify-center">
     <div className="w-full max-w-md">
@@ -28,7 +28,9 @@ const CheckOtp = ({otp,setOtp,onSubmit,time,onBack}:CheckOtpProps) => {
           // @ts-ignore
           renderInput={(props) => <input type="number" {...props} />}
         />
-        <button className="btn btn--primary cursor-pointer" type="submit">ارسال کد تایید</button>
+        <button className="btn btn--primary cursor-pointer" type="submit">
+          {isloading ? "در حال ارسال":"ارسال کد تایید"}
+        </button>
     </form> 
     </div>
     </div>

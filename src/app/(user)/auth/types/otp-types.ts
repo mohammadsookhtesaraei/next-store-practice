@@ -7,7 +7,8 @@ export type SendOtpProps={
      changeHandler: (
     e: React.ChangeEvent<HTMLInputElement, HTMLInputElement>,
   ) => void;
-    onSubmit:(e: React.SubmitEvent<HTMLFormElement>)=>void
+    onSubmit:(e: React.SubmitEvent<HTMLFormElement>)=>void,
+    isLoading:boolean
 };
 
 export type CheckOtpProps={
@@ -15,5 +16,6 @@ export type CheckOtpProps={
   setOtp: React.Dispatch<React.SetStateAction<string>>,
   onSubmit:(e: React.SubmitEvent<HTMLFormElement>)=>void,
   time:number,
-  onBack:() => void
+  onBack:() => void,
+  isloading:boolean
 }

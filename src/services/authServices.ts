@@ -15,4 +15,12 @@ export const checkotpCode=(data:{
     otp:string
 })=>{
     return http.post("/user/check-otp",data).then(({data})=>data.data);
+};
+
+
+export const completeProfile=(data:{
+    name:string,
+    email:string
+})=>{
+    return http.post("/user/complete-profile",data).then(({data})=>data.data);
 }
