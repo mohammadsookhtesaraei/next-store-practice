@@ -25,8 +25,8 @@ const CheckOtp = ({otp,setOtp,onSubmit,time,onBack,isloading}:CheckOtpProps) => 
           
           }}
           containerStyle="flex flex-row-reverse gap-x-2 justify-center"
-          // @ts-ignore
-          renderInput={(props) => <input type="number" {...props} />}
+         
+          renderInput={(props) => <input {...props} />}
         />
         <button className="btn btn--primary cursor-pointer" type="submit">
           {isloading ? "در حال ارسال":"ارسال کد تایید"}

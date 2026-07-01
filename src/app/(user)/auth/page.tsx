@@ -8,7 +8,8 @@ import { useRouter } from "next/navigation"
 import SendOtp from "@/app/(user)/auth/components/SendOtp"
 import CheckOtp from "@/app/(user)/auth/components/CheckOtp"
 
-import { useMutation } from "@tanstack/react-query"
+import { QueryClient, useMutation } from "@tanstack/react-query"
+import { useQueryClient } from "@tanstack/react-query"
 import { checkotpCode, getOtpCode } from "@/services/authServices"
 import toast from "react-hot-toast"
 import axios from "axios"
@@ -17,7 +18,7 @@ const resend=90;
 
 const Auth = () => {
  
-
+const queryClient = useQueryClient();
   const [phoneNumber,setPhoneNumber]=useState("");
 
   const [otp,setOtp]=useState("");
@@ -28,12 +29,12 @@ const Auth = () => {
 
 
  
-  const {data,isPending,mutateAsync}=useMutation({
+  const {isPending,mutateAsync}=useMutation({
     mutationFn:getOtpCode
   });
 
 
-  const {data:checkOtp,mutateAsync:resonseOtp,isPending:isloading}=useMutation({
+  const {mutateAsync:resonseOtp,isPending:isloading}=useMutation({
     mutationFn:checkotpCode
   });
 
@@ -72,7 +73,33 @@ const Auth = () => {
    if(!user.isActive){
     router.push("/check-profile")
    }else {
-    router.push("/");
+   queryClient.invalidateQueries({
+    queryKey:["get-user"]
+   });
+
+  //  روتر پوش فقط یو ار ال رو تغیر میده
+  // استیت و کش حفظ میشه اطلاعات در  حافظه می مونه
+  // استیت و کانتکس از اول ساخته نمی شن
+  // وقتی روت تغییر میکنه جایی اگه اطلاعات کاربر  نیاز دارم مثلا هدر
+  // چون کاربر هنوز لاگین نکرده نال هستش
+  // لاگین میکنه روترپوش اتفاق میوفته ولی هنوز کاربر نال هستش
+  // با رفرش دستی صفحه درخواست اجرا میشه اطلاعات کاربر نمایش داده میشه
+  // که کار درستی نیست چون با رفرش صفحه  همه  چی از اول ساخته میشه یکجورایی
+
+// پس باید از پوش استفاده کنیم تا صفحه رفرش نشه برا همین داریم از نکست استفاده
+// می کنیم که ری لود و رفرش نداشته باشیم وقتی جابجا میشیم بین صفحات
+  //  بهترین روش استفاده از پوش هستش چون سرعت بالاتره و وضعیت استیت ها حفظ میشه رفرش نمی شه
+  //  ولی باید قبل از پوش اطلاعات کار بر رو اینولیدیت کنیم
+  //  که در بالای این کد با ری اکت کویری انجام دادیم تا اطلاعات کاربر نشون داده بشه بدون ری لود صفحه
+
+   router.push("/");
+// اما روش دوم استفاده
+  //  document.location.href="/"
+  // زیاد توصیه نمیشه روت عوض میشه 
+  //  ولی کل دیتای برنامه رو ریست می کنه رفرش اتفاق میوفته
+  // استیت کانتکس از اول ساخته میشن
+  // و نسبت به روتر پوش کندتره
+  
    }
   }catch(error){
    if(axios.isAxiosError(error)){
