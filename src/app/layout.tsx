@@ -3,8 +3,9 @@ import type { Metadata } from "next";
 import { Vazirmatn } from "next/font/google";
 
 import "./globals.css";
-import Layout from "@/components/layout/Layout";
+
 import QueryProvider from "@/providers/ReactQueryProvider";
+
 import { Toaster } from "react-hot-toast";
 
 const vazir = Vazirmatn({
@@ -27,7 +28,7 @@ export default function RootLayout({
     <html lang="fa" dir="rtl" className={`${vazir.variable}`}>
       <body>
         <QueryProvider>
-          <Layout>{children}</Layout>
+          {children}
           <Toaster/>
         </QueryProvider>
       </body>

@@ -25,7 +25,7 @@ const CheckProfile = () => {
     setProfileData((prev) => ({ ...prev, [name]: value }));
   };
 
-  const { data, isPending, mutateAsync } = useMutation({
+  const { isPending, mutateAsync } = useMutation({
     mutationFn: completeProfile,
   });
 
