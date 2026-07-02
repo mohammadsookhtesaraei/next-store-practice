@@ -1,6 +1,6 @@
 import http from "@/services/httpservice"
 
-
+import { FormDataState } from "@/app/(profile)/profile/me/page";
 
 export const getOtpCode=(data:{
     phoneNumber:string
@@ -28,4 +28,9 @@ export const completeProfile=(data:{
 
 export const getProfile=()=>{
 return http.get("/user/profile").then(({data})=>data.data);
-}
+};
+
+
+export function updateProfile(data:FormDataState) {
+  return http.patch("/user/update", data).then(({ data }) => data.data);
+};

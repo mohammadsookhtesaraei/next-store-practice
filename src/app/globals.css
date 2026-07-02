@@ -70,12 +70,19 @@
 }
 
 @layer base {
+
+  html {
+      scrollbar-gutter: stable;
+  }
   body {
     font-family: var(--font-vazir);
     min-height: 100vh;
     min-height: 100dvh;
     display: flex;
     flex-direction: column;
+     overflow-x: hidden;
+     overflow-y: auto;
+    
   }
 
   :lang(en) {
