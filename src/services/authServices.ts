@@ -34,3 +34,8 @@ return http.get("/user/profile").then(({data})=>data.data);
 export function updateProfile(data:FormDataState) {
   return http.patch("/user/update", data).then(({ data }) => data.data);
 };
+
+
+export function logout(){
+    return http.post("/user/logout")
+}

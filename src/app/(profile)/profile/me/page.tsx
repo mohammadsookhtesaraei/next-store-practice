@@ -78,7 +78,7 @@ function MeProfile() {
 
   if (isLoading)
     return (
-      <div className="w-fit bg-red-500">
+      <div className="w-fit m-2">
         <RotatingLines
           visible={true}
           height="50"
