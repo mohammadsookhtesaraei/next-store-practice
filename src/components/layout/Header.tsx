@@ -11,7 +11,7 @@ const Header = () => {
 
 
   return (
-    <header className={`shadow-md mb-10 sticky top-0 transition-all duration-200 ${isPending ? "blur-sm opacity-70" :"opacity-100 blur-0"}`}>
+    <header className={`shadow-md mb-10  bg-white sticky top-0 transition-all duration-200 ${isPending ? "blur-sm opacity-70" :"opacity-100 blur-0"}`}>
       <nav className="container flex items-center h-15">
     <ul className="flex w-full justify-between gap-4">
       <div className="flex items-center gap-x-3">

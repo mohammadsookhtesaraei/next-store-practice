@@ -1,19 +1,21 @@
-
 import { Suspense } from "react";
 import ProductsList from "@/app/products/components/ProductsList";
+import CategorySideBar from "@/app/products/components/categorySideBar/CategorySideBar";
 
-const Products = async() => {
-
-
+const Products = () => {
   return (
-    <div className="grid grid-cols-12">
-      <div className="col-span-3"></div>
-       <div className="col-span-9">
+    <div className="grid grid-cols-12 h-screen">
+      <div className="col-span-3 bg-red-400">
         <Suspense fallback={<p>loading...</p>}>
-         <ProductsList/>
+          <CategorySideBar />
         </Suspense>
-       </div>
+      </div>
+      <div className="col-span-9">
+        <Suspense fallback={<p>loading...</p>}>
+          <ProductsList />
+        </Suspense>
+      </div>
     </div>
-  )
-}
-export default Products
+  );
+};
+export default Products;
