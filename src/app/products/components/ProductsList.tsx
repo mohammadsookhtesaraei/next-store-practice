@@ -7,9 +7,9 @@ const ProductsList = async() => {
       const products=await getProducts() as IProduct[];
 
   return (
-    <div>
+    <div className="flex gap-x-2">
         {products.map((item)=>(
-            <ProductsItmes key={item._id}/>
+            <ProductsItmes key={item._id} {...item}/>
         ))}
     </div>
   )
