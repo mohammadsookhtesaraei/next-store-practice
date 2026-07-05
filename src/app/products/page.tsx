@@ -4,8 +4,8 @@ import CategorySideBar from "@/app/products/components/categorySideBar/CategoryS
 
 const Products = () => {
   return (
-    <div className="grid grid-cols-12 h-screen">
-      <div className="col-span-3 bg-red-400">
+    <div className="grid grid-cols-12 h-screen gap-8">
+      <div className="col-span-3">
         <Suspense fallback={<p>loading...</p>}>
           <CategorySideBar />
         </Suspense>

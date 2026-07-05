@@ -8,8 +8,8 @@ const ProductsFilter = () => {
   const [isOpen,setIsOpen]=useState(false);
 
   return (
-    <div className="">
-      <button onClick={()=>setIsOpen((prev)=>!prev)} className="flex items-center gap-x-2 text-gray-400">
+    <div>
+      <button onClick={()=>setIsOpen((prev)=>!prev)} className="flex w-full items-center cursor-pointer justify-between gap-x-2 text-gray-400">
         <span>بر اساس نام محصول</span>
         <span className={`text-sm text-gray-500 transition-transform duration-200 ${isOpen ? "rotate-180" :""}`}>▼</span>
       </button>
