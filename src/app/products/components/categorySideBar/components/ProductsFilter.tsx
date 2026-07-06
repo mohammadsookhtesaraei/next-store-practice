@@ -95,7 +95,7 @@ const ProductsFilter = ({ categories }: ProductsFilterProps) => {
         </span>
       </button>
       <div
-        className={`${isOpen ? "max-h-96" : "max-h-0"} overflow-hidden border-b bg-red-400 transition-all duration-200`}
+        className={`${isOpen ? "max-h-96" : "max-h-0"} overflow-hidden border-b transition-all duration-200`}
       >
         {categories.map((item) => (
           <CheckBox

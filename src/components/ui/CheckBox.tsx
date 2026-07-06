@@ -11,7 +11,7 @@ type CheckBoxProps={
 
 const CheckBox = ({id,checked,label,name ,value,changeHanlder}:CheckBoxProps) => {
   return (
-    <div>
+    <div className="flex items-center gap-x-2">
         <input type="checkbox" id={id} name={name} checked={checked} value={value} onChange={changeHanlder} />
         <label htmlFor={id}>{label}</label>
     </div>
