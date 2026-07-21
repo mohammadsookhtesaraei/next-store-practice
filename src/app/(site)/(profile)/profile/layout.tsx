@@ -1,4 +1,4 @@
-import ProfileSideBar from "@/app/(profile)/components/ProfileSideBar";
+import ProfileSideBar from "@/app/(site)/(profile)/components/ProfileSideBar";
 
 type ProfileLayoutProps = {
   children: React.ReactNode;

@@ -19,8 +19,8 @@ import { checkotpCode, getOtpCode } from "@/services/authServices";
 
 
 // components
-import SendOtp from "@/app/(user)/auth/components/SendOtp";
-import CheckOtp from "@/app/(user)/auth/components/CheckOtp";
+import SendOtp from "@/app/(site)/(user)/auth/components/SendOtp";
+import CheckOtp from "@/app/(site)/(user)/auth/components/CheckOtp";
 
 
 const resend = 90;

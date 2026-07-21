@@ -1,5 +1,5 @@
-import ProductsFilter from "@/app/products/components/categorySideBar/components/ProductsFilter";
-import ProductsSorted from "@/app/products/components/categorySideBar/components/ProductsSorted";
+import ProductsFilter from "@/app/(site)/(user)/products/components/categorySideBar/components/ProductsFilter";
+import ProductsSorted from "@/app/(site)/(user)/products/components/categorySideBar/components/ProductsSorted";
 import { getCategories } from "@/services/categoriesServices";
 
 const CategorySideBar = async() => {

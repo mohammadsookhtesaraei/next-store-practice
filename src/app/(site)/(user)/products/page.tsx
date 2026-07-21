@@ -1,6 +1,6 @@
 import { Suspense } from "react";
-import ProductsList from "@/app/products/components/ProductsList";
-import CategorySideBar from "@/app/products/components/categorySideBar/CategorySideBar";
+import ProductsList from "@/app/(site)/(user)/products/components/ProductsList";
+import CategorySideBar from "@/app/(site)/(user)/products/components/categorySideBar/CategorySideBar";
 import queryString from "query-string";
 
 const Products =async ({searchParams}:{
