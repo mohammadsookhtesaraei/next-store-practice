@@ -1,6 +1,6 @@
 import http from "@/services/httpservice"
 
-import { FormDataState } from "@/app/(profile)/profile/me/page";
+import { FormDataState } from "@/app/(site)/(profile)/profile/me/page";
 
 export const getOtpCode=(data:{
     phoneNumber:string
