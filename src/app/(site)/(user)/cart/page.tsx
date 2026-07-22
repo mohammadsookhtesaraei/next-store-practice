@@ -1,23 +1,25 @@
 "use client"
-import { useRouter } from "next/navigation";
+
 import { useGetProfile } from "@/hook/useAuth"
 import Link from "next/link";
 import CartItem from "@/app/(site)/(user)/cart/components/CartItem";
+import { IProduct } from "@/types/products-interface";
 
 
 const Cart = () => {
+
+  // check user login or not
   const {data,isPending}=useGetProfile();
   const {user,cart}=data || {};
-  console.log(user);
-  console.log(cart);
-  const router=useRouter();
 
+// loading
   if(isPending) {
     return (
       <p>لودینگ...</p>
     )
   }
 
+  // if user and data not exist must be login
   if(!user || !data){
     return (
       <div className="p-6">
@@ -28,6 +30,7 @@ const Cart = () => {
     )
   }
 
+  // if user and cart product not exist or product length is zero show empty cart
     if(!user?.cart?.products || user.cart?.products.length === 0 ){
     return (
       <div className="p-6">
@@ -45,7 +48,7 @@ const Cart = () => {
   return (
     <div>
       <div>
-        {cart&&cart.productDetail.map((item)=>(
+        {cart&&cart.productDetail.map((item:IProduct)=>(
           <CartItem key={item._id} item={item}/>
         ))}
       </div>

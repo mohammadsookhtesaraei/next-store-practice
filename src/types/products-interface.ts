@@ -29,6 +29,7 @@ export interface IProduct {
 
   likesCount: number;
   isLiked: boolean;
+  quantity: number
 
   createdAt: string;
   updatedAt: string;
