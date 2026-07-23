@@ -4,6 +4,7 @@ import { useGetProfile } from "@/hook/useAuth"
 import Link from "next/link";
 import CartItem from "@/app/(site)/(user)/cart/components/CartItem";
 import { IProduct } from "@/types/products-interface";
+import CartSummary from "@/app/(site)/(user)/cart/components/CartSummary";
 
 
 const Cart = () => {
@@ -46,13 +47,15 @@ const Cart = () => {
 
 
   return (
-    <div>
-      <div>
+    <div className="grid grid-cols-4 gap-4">
+      <div className="col-span-3 space-y-5">
         {cart&&cart.productDetail.map((item:IProduct)=>(
           <CartItem key={item._id} item={item}/>
         ))}
       </div>
-      <div></div>
+      <div className="col-span-1">
+       <CartSummary payDetail={cart.payDetail}/>
+      </div>
     </div>
   )
 }

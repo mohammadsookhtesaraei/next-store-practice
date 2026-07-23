@@ -121,6 +121,11 @@
   .badge--error {
     @apply bg-rose-600 text-white;
   }
+
+  .flex-between {
+  @apply flex items-center justify-between
+
+}
 }
 
 
