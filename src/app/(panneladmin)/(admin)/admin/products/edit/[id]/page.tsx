@@ -1,21 +1,31 @@
 "use client";
 
-import { useRouter } from "next/navigation";
-import { useState } from "react";
+// دقیقا مشابه روت اد هستش
+// فقط بجای یوز اد
+// باید میوتیشن یوز ادیت بسازیم
+// و همینطور پروداکت رو فج کنیم تو یوز افکت ست کنیم
+// تا مونت اولیه فیلدها خالی نباشه
+
+import { useCategories as useCategories_1 } from "@/hook/useCategories";
+import { useEditProduct, useProductById } from "@/hook/useProducts";
+
+import { useParams, useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
 
 import axios from "axios";
 import toast from "react-hot-toast";
-
-import { useAddProduct } from "@/hook/useProducts";
-import { useCategories } from "@/hook/useCategories";
-
 import { FormadDataTypes } from "@/app/(panneladmin)/(admin)/admin/products/types/formDatatypes";
 import FormProducts from "@/app/(panneladmin)/(admin)/admin/products/components/FormProducts";
-const AddProduct = () => {
-  const router = useRouter();
-  const { data: categories, isPending } = useCategories();
 
-  const { mutateAsync: addMutate } = useAddProduct();
+const Edit = () => {
+  const { id } = useParams<{ id: string }>();
+  const router = useRouter();
+
+  const { data: product } = useProductById(id);
+
+  const { data: categories, isPending } = useCategories_1();
+
+  const { mutateAsync: addMutate } = useEditProduct();
   const [formAddData, setFormAddData] = useState<FormadDataTypes>({
     title: "",
     description: "",
@@ -31,6 +41,25 @@ const AddProduct = () => {
   const [tags, setTags] = useState<string[]>([]);
   const [selectedCategory, setSelectedCategory] = useState("");
 
+  useEffect(() => {
+    if (!product) return;
+
+    setFormAddData({
+      title: product.title,
+      description: product.description,
+      slug: product.slug,
+      brand: product.brand,
+      price: product.price,
+      offPrice: product.offPrice,
+      discount: product.discount,
+      countInStock: product.countInStock,
+      imageLink: product.imageLink,
+    });
+
+    setTags(product.tags);
+    setSelectedCategory(product.category._id);
+  }, [product]);
+
   if (!categories) {
     return [];
   }
@@ -45,7 +74,14 @@ const AddProduct = () => {
   const formHandler = async (e: React.SubmitEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    const data = { ...formAddData, tags, category: selectedCategory };
+    const data = {
+      productId: product._id,
+      data: {
+        ...formAddData,
+        tags,
+        category: selectedCategory,
+      },
+    };
     try {
       const { message } = await addMutate(data);
       toast.success(message);
@@ -58,11 +94,9 @@ const AddProduct = () => {
   };
 
   if (isPending) return <p>لودینگ...</p>;
+
   return (
-    <div className="p-4">
-      <h2 className="text-lg font-semibold text-gray-400 my-6">
-        اضافه کردن محصول
-      </h2>
+    <div>
       <FormProducts
         formData={formAddData}
         changeHandler={changeHandler}
@@ -76,4 +110,4 @@ const AddProduct = () => {
     </div>
   );
 };
-export default AddProduct;
+export default Edit;

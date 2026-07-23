@@ -51,3 +51,15 @@ export const getProductsByIdForAdminPannel=(id:string)=>{
 export const addProduct=(data:FromAddDataTypes)=>{
    return http.post(`admin/product/add`,data).then(({data})=>data.data)
 };
+
+
+export function editProduct({ productId, data }:{
+    productId:string,
+    data:FromAddDataTypes 
+}) {
+ 
+  return http
+    .patch(`/admin/product/update/${productId}`, data)
+    .then(({ data }) => data.data);
+}
+

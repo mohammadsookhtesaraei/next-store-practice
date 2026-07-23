@@ -1,5 +1,5 @@
 import http from "@/services/httpservice";
-import { addProduct, getProductsById, getProductsByIdForAdminPannel } from "@/services/productsService";
+import { addProduct, editProduct, getProductsByIdForAdminPannel } from "@/services/productsService";
 import { useMutation, useQuery } from "@tanstack/react-query";
 
 export const getAllProducts = () => {
@@ -41,3 +41,12 @@ export const useAddProduct=()=>{
         mutationFn:addProduct
     })
 };
+
+
+
+export const useEditProduct=()=>{
+return useMutation({
+  mutationFn:editProduct
+ });
+}
+
