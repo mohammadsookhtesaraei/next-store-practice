@@ -7,6 +7,7 @@ import { useProductById } from "@/hook/useProducts";
 import { IProduct } from "@/types/products-interface";
 import { toPersianNumbersWithComma } from "@/utils/toPersianNumber";
 const productId = () => {
+    
   const { productId } = useParams<{ productId: string }>();
 
   const { data: product, isPending } = useProductById(productId);

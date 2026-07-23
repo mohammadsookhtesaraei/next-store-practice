@@ -1,6 +1,6 @@
 import http from "@/services/httpservice";
-import { getProductsById, getProductsByIdForAdminPannel } from "@/services/productsService";
-import { useQuery } from "@tanstack/react-query";
+import { addProduct, getProductsById, getProductsByIdForAdminPannel } from "@/services/productsService";
+import { useMutation, useQuery } from "@tanstack/react-query";
 
 export const getAllProducts = () => {
     return http.get(`/product/list`, {
@@ -33,4 +33,11 @@ export const useProductById=(id:string)=>{
     enabled: !!id,
 
   })
+};
+
+
+export const useAddProduct=()=>{
+    return useMutation({
+        mutationFn:addProduct
+    })
 };

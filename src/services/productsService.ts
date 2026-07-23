@@ -1,5 +1,20 @@
 import http from "@/services/httpservice"
 
+
+type FromAddDataTypes={
+ tags: string[];
+ category: string;
+ title: string;
+ description: string;
+ slug: string;
+ brand: string;
+ price: string;
+ offPrice: string;
+ discount: string;
+ countInStock: string;
+ imageLink: string;
+}
+
 export const getProducts=(query:string,cookies:string)=>{
     return http.get(`/product/list?${query}`,{
         headers :{
@@ -30,4 +45,9 @@ export const likeProduct=(id:string)=>{
 
 export const getProductsByIdForAdminPannel=(id:string)=>{
     return http.get(`/product/${id}`).then(({data})=>data.data.product);
+};
+
+
+export const addProduct=(data:FromAddDataTypes)=>{
+   return http.post(`admin/product/add`,data).then(({data})=>data.data)
 };
