@@ -1,4 +1,5 @@
 import http from "@/services/httpservice";
+import { getProductsById, getProductsByIdForAdminPannel } from "@/services/productsService";
 import { useQuery } from "@tanstack/react-query";
 
 export const getAllProducts = () => {
@@ -20,4 +21,16 @@ export const useGetProducts = () => {
     });
 
     return { data, isPending, isError }
-}
+};
+
+
+export const useProductById=(id:string)=>{
+  return useQuery({
+    queryKey:["get-productById",id],
+    queryFn:()=>getProductsByIdForAdminPannel(id),
+    retry:false,
+    refetchOnWindowFocus:true,
+    enabled: !!id,
+
+  })
+};

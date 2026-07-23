@@ -126,6 +126,10 @@
   @apply flex items-center justify-between
 
 }
+
+.card {
+@apply border border-gray-400/30 rounded-md shadow-md flex flex-col p-4 text-gray-600
+}
 }
 
 

@@ -23,3 +23,11 @@ export const getProductsForStaticParams=()=>{
 export const likeProduct=(id:string)=>{
    return http.post(`/product/like/${id}`).then(({data})=>data.data)
 };
+
+
+// admin api
+
+
+export const getProductsByIdForAdminPannel=(id:string)=>{
+    return http.get(`/product/${id}`).then(({data})=>data.data.product);
+};
