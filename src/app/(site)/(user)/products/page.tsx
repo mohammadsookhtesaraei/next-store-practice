@@ -1,7 +1,13 @@
+
+
+
 import { Suspense } from "react";
 import ProductsList from "@/app/(site)/(user)/products/components/ProductsList";
 import CategorySideBar from "@/app/(site)/(user)/products/components/categorySideBar/CategorySideBar";
 import queryString from "query-string";
+
+
+export const dynamic="force-dynamic"
 
 const Products =async ({searchParams}:{
   searchParams:Promise<Record<string, string | string[] | undefined>>;
@@ -10,6 +16,9 @@ const Products =async ({searchParams}:{
   const allQuery=await searchParams;
 
   const query=queryString.stringify(allQuery);
+
+
+   
 
   return (
     <div className="grid grid-cols-12 h-screen gap-8">
