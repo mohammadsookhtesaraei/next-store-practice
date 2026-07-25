@@ -9,6 +9,11 @@ interface GetCategoryResponse {
 }
 
 
+interface RemoveCategoryResponse {
+ message: string;
+}
+
+
 export const useCategories=()=>{
     return useQuery({
         queryKey:["get-categories"],

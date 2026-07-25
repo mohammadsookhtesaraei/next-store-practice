@@ -1,9 +1,15 @@
+
+import { useQueryClient } from "@tanstack/react-query"
+import { useRemoveCategory } from "@/hook/useCategories"
+
 import { ICategory } from "@/types/category-interface"
 
 import { categoryListTableTHeads } from "@/constant/tableHeads"
 import Link from "next/link"
 import { HiEye, HiTrash } from "react-icons/hi"
 import { AiFillEdit } from "react-icons/ai"
+import toast from "react-hot-toast"
+import axios from "axios"
 
 type CategoryTableProps={
     categories:ICategory[]
@@ -11,6 +17,25 @@ type CategoryTableProps={
 
 
 const CategoryTable = ({categories}:CategoryTableProps) => {
+
+  const queryClient=useQueryClient();
+
+  const {mutateAsync}=useRemoveCategory();
+
+  const removeHandler=async(id:string)=>{
+    console.log(id);
+    try{
+     const {message}=await mutateAsync(id);
+     toast.success(message);
+     queryClient.invalidateQueries({
+      queryKey:["get-categories"]
+     })
+    }catch(error){
+   if(axios.isAxiosError(error)){
+    toast.error(error?.response?.data?.message)
+   }
+    }
+  }
   return (
     <table className="border-separate border-spacing-y-3  table-auto w-full min-w-200  text-sm">
         <thead>
@@ -33,7 +58,7 @@ const CategoryTable = ({categories}:CategoryTableProps) => {
               <Link href={`/admin/categories/${item._id}`}>
                 <HiEye />
               </Link>
-              <button>
+              <button className="cursor-pointer" onClick={()=>removeHandler(item._id)}>
                 <HiTrash className="text-rose-600 h-6 w-6" />
               </button>
               <Link href={`/admin/categories/edit/${item._id}`}>
