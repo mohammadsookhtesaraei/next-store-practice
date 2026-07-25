@@ -1,10 +1,14 @@
 import { productListTableTHeads } from "@/constant/tableHeads";
+import { useRemoveProduct } from "@/hook/useProducts";
 import { IProduct } from "@/types/products-interface";
 import {
   toPersianNumbers,
   toPersianNumbersWithComma,
 } from "@/utils/toPersianNumber";
+import { useQueryClient } from "@tanstack/react-query";
+import axios from "axios";
 import Link from "next/link";
+import toast from "react-hot-toast";
 import { AiFillEdit } from "react-icons/ai";
 import { HiEye, HiTrash } from "react-icons/hi";
 
@@ -13,6 +17,24 @@ type ProductsTableProps = {
 };
 
 const ProductsTable = ({ products }: ProductsTableProps) => {
+
+  const {mutateAsync}=useRemoveProduct();
+  const queryClient=useQueryClient()
+
+  const removeProductHandler=async(id:string)=>{
+   try{
+    const {message}=await mutateAsync(id);
+    toast.success(message);
+    queryClient.invalidateQueries({
+      queryKey:["get-products"]
+    });
+   }catch(error){
+   if(axios.isAxiosError(error)){
+    toast.error(error?.response?.data?.message)
+   }
+   }
+  }
+
   return (
     <table className="border-separate border-spacing-y-3  table-auto w-full min-w-200  text-sm">
       <thead>
@@ -43,7 +65,7 @@ const ProductsTable = ({ products }: ProductsTableProps) => {
               <Link href={`/admin/products/${item._id}`}>
                 <HiEye />
               </Link>
-              <button>
+              <button onClick={()=>removeProductHandler(item._id)}>
                 <HiTrash className="text-rose-600 h-6 w-6" />
               </button>
               <Link href={`/admin/products/edit/${item._id}`}>

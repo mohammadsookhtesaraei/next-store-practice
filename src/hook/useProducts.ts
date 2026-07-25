@@ -1,5 +1,5 @@
 import http from "@/services/httpservice";
-import { addProduct, editProduct, getProductsByIdForAdminPannel } from "@/services/productsService";
+import { addProduct, editProduct, getProductsByIdForAdminPannel, removeProduct } from "@/services/productsService";
 import { useMutation, useQuery } from "@tanstack/react-query";
 
 export const getAllProducts = () => {
@@ -42,6 +42,9 @@ export const useAddProduct=()=>{
     })
 };
 
+export const useRemoveProduct = () => {
+  return useMutation({ mutationFn: removeProduct});
+};
 
 
 export const useEditProduct=()=>{

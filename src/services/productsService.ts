@@ -53,6 +53,11 @@ export const addProduct=(data:FromAddDataTypes)=>{
 };
 
 
+export function removeProduct(id:string) {
+  return http.delete(`/admin/product/remove/${id}`).then(({ data }) => data.data);
+}
+
+
 export function editProduct({ productId, data }:{
     productId:string,
     data:FromAddDataTypes 
