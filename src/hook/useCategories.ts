@@ -1,5 +1,6 @@
+import { addNewCategory, removeCategory, updateCategory } from "@/services/categoriesService";
 import { getCategories } from "@/services/categoriesServices";
-import { useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 
 
 
@@ -10,4 +11,21 @@ export const useCategories=()=>{
         retry:false,
         refetchOnWindowFocus:true
     })
+};
+
+// panel admin - category - add
+export const useAddCategory=()=>{
+    return useMutation({
+        mutationFn:addNewCategory
+    })
+};
+
+// panel admin - category - edit
+export const useUpdateCategory = () =>
+  useMutation({ mutationFn: updateCategory });
+
+
+// panel admin - category - remove
+export const useRemoveCategory = () => {
+  return useMutation({ mutationFn: removeCategory });
 };
