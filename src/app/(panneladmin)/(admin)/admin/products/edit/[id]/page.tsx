@@ -6,7 +6,7 @@
 // و همینطور پروداکت رو فج کنیم تو یوز افکت ست کنیم
 // تا مونت اولیه فیلدها خالی نباشه
 
-import { useCategories as useCategories_1 } from "@/hook/useCategories";
+import { useCategories } from "@/hook/useCategories";
 import { useEditProduct, useProductById } from "@/hook/useProducts";
 
 import { useParams, useRouter } from "next/navigation";
@@ -23,7 +23,7 @@ const Edit = () => {
 
   const { data: product } = useProductById(id);
 
-  const { data: categories, isPending } = useCategories_1();
+  const { data: categories, isPending } = useCategories();
 
   const { mutateAsync: addMutate } = useEditProduct();
   const [formAddData, setFormAddData] = useState<FormadDataTypes>({

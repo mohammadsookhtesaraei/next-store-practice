@@ -1,7 +1,12 @@
-import { addNewCategory, removeCategory, updateCategory } from "@/services/categoriesService";
+import { addNewCategory, getCategoryById, removeCategory, updateCategory } from "@/services/categoriesService";
 import { getCategories } from "@/services/categoriesServices";
+import { ICategory } from "@/types/category-interface";
 import { useMutation, useQuery } from "@tanstack/react-query";
 
+
+interface GetCategoryResponse {
+  category: ICategory;
+}
 
 
 export const useCategories=()=>{
@@ -19,6 +24,14 @@ export const useAddCategory=()=>{
         mutationFn:addNewCategory
     })
 };
+
+export const useGetCategoryById = (id:string) =>
+  useQuery<GetCategoryResponse>({
+    queryKey: ["get-category", id],
+    queryFn: () => getCategoryById(id),
+    retry: false,
+    refetchOnWindowFocus: true,
+  });
 
 // panel admin - category - edit
 export const useUpdateCategory = () =>
