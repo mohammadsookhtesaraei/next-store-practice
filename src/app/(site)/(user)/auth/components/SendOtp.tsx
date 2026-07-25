@@ -1,4 +1,4 @@
-import { SendOtpProps } from "@/app/(user)/auth/types/otp-types";
+import { SendOtpProps } from "@/app/(site)/(user)/auth/types/otp-types";
 import TextField from "@/components/ui/TextField";
 
 const SendOtp = ({ phoneNumber, onSubmit, changeHandler ,isLoading}: SendOtpProps) => {

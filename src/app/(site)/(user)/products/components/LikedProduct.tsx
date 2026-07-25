@@ -1,8 +1,10 @@
 "use client";
 
 import { likeProduct } from "@/services/productsService";
+import axios from "axios";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import toast from "react-hot-toast";
+
 
 const LikedProduct = ({ id, isLiked }: { id: string; isLiked: boolean }) => {
   // why use all this , like and sorted in sidebar must be equal
@@ -22,7 +24,11 @@ const LikedProduct = ({ id, isLiked }: { id: string; isLiked: boolean }) => {
       toast.success(message);
       router.push(pathname + "?" + searchParams.toString());
       router.refresh();
-    } catch (error) {}
+    } catch (error) {
+     if(axios.isAxiosError(error)){
+      toast.error(error?.response?.data?.message)
+     }
+    }
   };
   return (
     <div className="mt-2">

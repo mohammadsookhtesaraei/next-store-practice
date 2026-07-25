@@ -8,7 +8,7 @@ import { IProduct } from "@/types/products-interface";
 
 import { toPersianNumbersWithComma } from "@/utils/toPersianNumber";
 
-const productId = () => {
+const ProductId = () => {
     
   const { productId } = useParams<{ productId: string }>();
 
@@ -31,4 +31,4 @@ const productId = () => {
     </div>
   );
 };
-export default productId;
+export default ProductId;

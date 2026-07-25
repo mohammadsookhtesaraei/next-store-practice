@@ -1,6 +1,6 @@
 import OTPInput from "react-otp-input";
 
-import { CheckOtpProps } from "@/app/(user)/auth/types/otp-types";
+import { CheckOtpProps } from "@/app/(site)/(user)/auth/types/otp-types";
 
 const CheckOtp = ({otp,setOtp,onSubmit,time,onBack,isloading}:CheckOtpProps) => {
   return (
