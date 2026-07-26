@@ -1,5 +1,5 @@
 
-import { getProfile } from "@/services/authServices"
+import { getAllUsers, getProfile } from "@/services/authServices"
 import { useQuery } from "@tanstack/react-query"
 
 
@@ -26,3 +26,11 @@ return {data,isPending}
 // خب وقتی کاربر لاگین میکنه یک اکسس توکن و رفرش توکن بهش تعلق میگیره
 // وفتی اینجا درخواست میزنیم به بکند برای گرفتن اطلاعات کاربر رفرش توکن و اکسس توکن هم ارسال میشه
 // بکند از این طریق متوجه میشه اطلاعات کدوم کاربر رو بفرسته
+
+export const useGetUsers = () =>
+  useQuery({
+    queryKey: ["get-users"],
+    queryFn: getAllUsers,
+    retry: false,
+    refetchOnWindowFocus: true,
+  });
