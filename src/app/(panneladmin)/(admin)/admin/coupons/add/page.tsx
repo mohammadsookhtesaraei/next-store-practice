@@ -14,7 +14,7 @@ export type FormCouponDataState ={
     usageLimit: string;
 };
 
-type ProductIdsState={
+export type ProductIdsState={
   _id: string,
   title: string,
   slug: string
@@ -85,7 +85,6 @@ if(!products) {
         expireDate={expireDate}
         setExpireDate={setExpireDate}
         type={type}
-        setType={setType}
         formData={formCouponData}
         isLoading={isPending}
         onChangeSelect={setProductIds}

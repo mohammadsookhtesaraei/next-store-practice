@@ -17,7 +17,6 @@ const FormCoupon = ({
   expireDate,
   onChangeSelect,
   setExpireDate,
-  setType,
   options,
   typeChangeHandler,
    defaultValue = "",
