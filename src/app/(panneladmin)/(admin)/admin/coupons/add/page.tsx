@@ -4,7 +4,7 @@ import FormCoupon from "@/app/(panneladmin)/(admin)/admin/coupons/components/For
 import { useAddNewCoupon } from "@/hook/useCoupons";
 import { useGetProducts } from "@/hook/useProducts"
 import axios from "axios";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 import toast from "react-hot-toast";
 
@@ -14,8 +14,30 @@ export type FormCouponDataState ={
     usageLimit: string;
 };
 
+type ProductIdsState={
+  _id: string,
+  title: string,
+  slug: string
+}
+
 
 const AddCoupon = () => {
+
+   const router=useRouter();
+  // state form
+  const [formCouponData,setFormCouponData]=useState<FormCouponDataState>({
+      code: "",
+      amount: "",
+      usageLimit: "",
+  });
+
+  // state type coupon
+const [type, setType] = useState("percent");
+
+const [productIds, setProductIds] = useState<ProductIdsState[]>([]);
+ const [expireDate, setExpireDate] = useState(new Date());
+// mutaute first
+ const { isPending, mutateAsync } = useAddNewCoupon();
   // get all products
 const {data:products}=useGetProducts();
 
@@ -23,23 +45,17 @@ if(!products) {
   return []
 };
 
-// state form
-const [formCouponData,setFormCouponData]=useState<FormCouponDataState>({
-    code: "",
-    amount: "",
-    usageLimit: "",
-});
-
-// state type coupon
-const [type, setType] = useState("percent");
-
-const [productIds, setProductIds] = useState([]);
- const [expireDate, setExpireDate] = useState(new Date());
- const router=useRouter();
-
-   const { isPending, mutateAsync } = useAddNewCoupon();
 
 
+
+
+  // type changeHandler 
+
+  const typeChangeHandler=(e: React.ChangeEvent<HTMLInputElement, HTMLInputElement>)=>{
+   setType(e.target.value)
+  }
+
+  // formData
    const changeHandler=(e: React.ChangeEvent<HTMLInputElement, HTMLInputElement>)=>{
    const {name,value}=e.target;
    setFormCouponData((prev)=>({...prev,[name]:value}))
@@ -76,6 +92,8 @@ const [productIds, setProductIds] = useState([]);
         changeHandler={changeHandler}
         formHandler={formHandler}
         options={products}
+        typeChangeHandler={typeChangeHandler}
+        defaultValue=""
       />
     </div>
   )

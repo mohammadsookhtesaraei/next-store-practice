@@ -11,5 +11,7 @@ export type FormCouponProps = {
     onChangeSelect: React.Dispatch<React.SetStateAction<never[]>>
     changeHandler:(e: React.ChangeEvent<HTMLInputElement, HTMLInputElement>) => void,
     formHandler: (e: React.SubmitEvent<HTMLFormElement>) => void
-    options: IProduct[]
+    options: IProduct[],
+     typeChangeHandler:(e: React.ChangeEvent<HTMLInputElement, HTMLInputElement>)=>void,
+      defaultValue :string,
 }
